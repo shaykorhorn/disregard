@@ -1,0 +1,68 @@
+import numpy as np
+
+class WrestlingRules:
+    def __init__(self):
+        self.scoring_rules = {
+            "Takedown": 2,
+            "Escape": 1,
+            "Reversal": 2,
+            "Near Fall": [2, 3],  # Points depend on the duration
+            "Penalty": [1, 2]  # Points depend on the severity
+        }
+
+        self.positions = ["Neutral Position", "Top Position", "Bottom Position"]
+
+        self.match_outcomes = {
+            "Decision": "Winning on points",
+            "Pin/Fall": "Holding both of the opponent's shoulders on the mat",
+            "Technical Fall": "Winning by a large point margin",
+            "Major Decision": "Winning by 8-14 points",
+            "Forfeit": "Opponent voluntarily gives up the match"
+        }
+
+    def display_menu(self):
+        print("\nWrestling Rules Menu:")
+        print("1. Scoring Rules")
+        print("2. Positions")
+        print("3. Match Outcomes")
+        print("4. Quit")
+
+    def display_scoring_rules(self):
+        print("\nScoring Rules:")
+        for rule, points in self.scoring_rules.items():
+            if isinstance(points, list):
+                print(f"{rule}: {points[0]} or {points[1]} points (depends on the duration)")
+            else:
+                print(f"{rule}: {points} points")
+
+    def display_positions(self):
+        print("\nWrestling Positions:")
+        for position in self.positions:
+            print(position)
+
+    def display_match_outcomes(self):
+        print("\nMatch Outcomes:")
+        for outcome, description in self.match_outcomes.items():
+            print(f"{outcome}: {description}")
+
+    def run_program(self):
+        while True:
+            self.display_menu()
+            choice = input("Enter your choice (1-4): ")
+
+            if choice == '1':
+                self.display_scoring_rules()
+            elif choice == '2':
+                self.display_positions()
+            elif choice == '3':
+                self.display_match_outcomes()
+            elif choice == '4':
+                print("Exiting the program. Goodbye!")
+                break
+            else:
+                print("Invalid choice. Please enter a number between 1 and 4.")
+
+
+if __name__ == "__main__":
+    wrestling_rules_program = WrestlingRules()
+    wrestling_rules_program.run_program()
